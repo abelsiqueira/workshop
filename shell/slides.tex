@@ -1,0 +1,147 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{nopageno}
+\usepackage{color}
+
+\usepackage[top=1cm,bottom=2cm,left=1cm,right=1cm, paperwidth=16cm,
+paperheight=16cm]{geometry}
+\title{Shell - Bash}
+\author{Laboratório de Pesquisa Operacional e Otimização \\
+Abel Siqueira \\
+Raniere Silva
+}
+\date{ 21 de Fevereiro de 2014 }
+
+\newcommand{\aframe}[1]{
+\Large
+\begin{center}
+#1
+\end{center}
+\vfill
+\newpage
+}
+\newcommand{\tit}[1]{
+{\LARGE \color{green} #1}
+\\ \vspace{0.5cm}
+\vfill
+}
+\newcommand{\cmd}[1]{
+\begin{flushleft}
+{\color{yellow} \tt \$ #1 }\\
+\end{flushleft}
+}
+\newcommand{\cmdinline}[1]{
+{\color{yellow} \tt #1} }
+
+\pagecolor{black}
+\color{white}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\aframe{
+\tit{Estrutura de arquivos}
+
+\begin{description}
+\item[/] \hfill
+\begin{description}
+  \item[/bin] \hfill
+  \item[/home] \hfill
+  \begin{description}
+    \item[/home/abel] \hfill
+  \end{description}
+  \item[/lib] \hfill
+  \item[/media] \hfill
+  \item[/mnt] \hfill
+  \item[/tmp] \hfill
+\end{description}
+\end{description}
+}
+
+\aframe{
+\tit{Explorando}
+Nenhum destes comandos quebra o computador:
+\cmd{ls}
+\cmd{ls / -F}
+\cmd{ls /home}
+\cmd{ls -la}
+\cmd{pwd}
+\cmd{cd /home}
+\cmd{cd ..}
+\cmd{cd /tmp}
+\cmd{mkdir novodir}
+\cmd{ls \&\& cd novodir}
+}
+
+\aframe{
+\tit{Quero mais}
+Será que dá pra listar por tamanho?
+\begin{itemize}
+  \item Google
+  \item {\tt man}
+\end{itemize}
+\cmd{man}
+Use \cmdinline{q} para sair do \cmdinline{man}.
+Procurando por size, encontramos a opção \cmdinline{-s}.
+\cmd{ls -S}
+\cmd{ls -Sl}
+}
+
+\aframe{
+\tit{Manipulação de arquivos}
+Crie um arquivo qualquer. Vamos chamá-lo de 
+\cmdinline{arquivo.txt}. Dentro dele escreva seu nome.
+Salve na pasta que criamos anteriormente.
+\cmd{ls}
+\cmd{cat arquivo.txt}
+\cmd{cp arquivo.txt meunome.txt}
+\cmd{cat meunome.txt}
+\cmd{mv arquivo.txt outro.txt}
+\cmd{ls}
+\cmd{rm outro.txt}
+}
+
+\aframe{
+\tit{Tão longe de casa}
+\cmd{pwd}
+\cmd{cd /home/abel}
+\cmd{cd /usr/local/share}
+\cmd{cd \textasciitilde}
+\cmd{cd /usr/local/share}
+\cmd{cd}
+\cmd{echo "Hello"}
+\cmd{echo ~}
+\cmd{echo \$HOME}
+}
+
+\aframe{
+\tit{Redirecionando}
+\cmd{cd /tmp}
+\cmd{echo "Abel" > testing}
+\cmd{cat testing}
+\cmd{python2 -c "s=raw\_input(); print s"}
+\cmd{python2 -c "s=raw\_input(); print s" < tst}
+\cmd{echo "Zé" | python2 -c "s=raw\_input(); print s"}
+}
+
+\aframe{
+\tit{Exercícios}
+\begin{enumerate}
+  \item Crie uma pasta chamada \cmdinline{exshell} em seu 
+    diretório pessoal.
+  \item Crie um arquivo chamado \cmdinline{execs} nessa pasta 
+    contendo toda a listagem da pasta \cmdinline{/bin}.
+  \item O comando \cmdinline{tr a b} troca a letra \cmdinline{a} pela
+    letra \cmdinline{b} de algum texto redirecionado para o comando.
+    Redirecione o arquivo \cmdinline{execs} para o comando \cmdinline{tr} para
+    trocar a letra \cmdinline{z} pela letra \cmdinline{a}. (Existem duas
+    maneiras de fazer).
+  \item A saída acima ficou fora de ordem. Use o comando \cmdinline{sort} para
+    reodernar as linhas sem criar arquivos adicionais.
+\end{enumerate}
+}
+
+\end{document}
