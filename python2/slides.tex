@@ -1,0 +1,199 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{nopageno}
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+
+\usepackage[top=1cm,bottom=2cm,left=1cm,right=1cm, paperwidth=16cm,
+paperheight=16cm]{geometry}
+\title{Python2}
+\author{Laboratório de Pesquisa Operacional e Otimização \\
+Abel Siqueira \\
+Raniere Silva
+}
+\date{ 21 de Fevereiro de 2014 }
+
+\newcommand{\iframe}[1]{
+\Large
+\begin{center}
+#1
+\end{center}
+}
+\newcommand{\iframeend}{ \vfill \newpage}
+\newcommand{\aframe}[1]{
+\Large
+\begin{center}
+#1
+\end{center}
+\vfill
+\newpage
+}
+
+\newcommand{\tit}[1]{
+{\LARGE \color{green} #1}
+\\ \vspace{0.5cm}
+\vfill
+}
+\newcommand{\cmd}[1]{
+\begin{flushleft}
+{\color{yellow} \tt \$ #1 }\\
+\end{flushleft}
+}
+\newcommand{\cmdpy}[1]{
+\begin{flushleft}
+{\color{yellow} \tt > #1 }\\
+\end{flushleft}
+}
+\newcommand{\inline}[1]{
+{\color{yellow} \tt #1} }
+
+\definecolor{filebg}{gray}{0.1}
+\lstdefinestyle{filestyle}{
+  language=Python,
+  basicstyle=\ttfamily,
+  keywordstyle=\color{red},
+  commentstyle=\itshape\color{cyan},
+  stringstyle=\color{green},
+  frame=single,
+  breaklines=true,
+  breakatwhitespace=false,
+  backgroundcolor=\color{filebg}
+}
+\lstnewenvironment{file}{\lstset{style=filestyle}}{}
+
+\pagecolor{black}
+\color{white}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\aframe{
+  \tit{Introdução}
+  Podemos criar arquivos e rodá-los com \inline{python2}, 
+  ou utilizar o Interpretador Interativo.
+
+  Vamos começar usando o interpretador. Para isso, digite
+  \cmd{python2}
+  Obtendo
+  \cmdpy{}
+}
+
+\aframe{
+\tit{O famoso... }
+\cmdpy{print "Hello World" \\
+Hello World}
+}
+
+\aframe{
+  \tit{Exemplos básicos}
+  \cmdpy{2 + 3}
+  \cmdpy{10*20}
+  \cmdpy{3**5}
+  \cmdpy{2\textasciicircum 1 \#Não é potência}
+}
+
+\iframe{
+\tit{Arquivo básico}
+Crie um arquivo \inline{test1.py} com o conteúdo
+}
+\begin{file}
+s = raw_input()
+print s.swapcase()
+\end{file}
+\iframe{
+Execute com
+\cmd{python2 test1.py}
+e digite qualquer coisa.
+}
+\iframeend
+
+\iframe{
+  \tit{Algo útil}
+  Vamos criar um programa para fatorial.
+  Para isso, usaremos funções.
+
+  Crie o arquivo \inline{fact.py}.
+}
+\begin{file}
+def factorial(n):
+  # Calcula o fatorial
+  return 1
+\end{file}
+\iframe{
+  No interpretador faça
+  \cmdpy{from fact import factorial}
+  \cmdpy{factorial(1) \\
+  1}
+  \cmdpy{factorial(5) \\
+  1}
+}
+\iframeend
+
+\iframe{
+  \tit{Algo útil}
+  Melhorando
+}
+\begin{file}
+def factorial(n):
+  # Calcula o fatorial
+  if n <= 0:
+    return 1
+  else
+    return n*factorial(n-1)
+\end{file}
+\iframeend
+
+\iframe{
+  \tit{Algo útil}
+  E também, para não ter que chamar sempre o interpretador,
+  crie o arquivo \inline{callfact.py}.
+}
+\begin{file}
+from fact import factorial
+
+print factorial(0)
+print factorial(2)
+print factorial(5)
+print factorial(-1)
+\end{file}
+\iframe{
+  E chamamos
+  \cmd{python2 callfact.py \\
+1 \\
+2 \\
+120 \\
+1
+}
+}
+\iframeend
+\iframe{
+  \tit{Algo útil}
+  Vamos fazer com que o fatorial de um número negativo retorne 0.
+}
+\begin{file}
+def factorial(n):
+  # Calcula o fatorial
+  if n < 0:
+    return 0
+  elif n <= 1:
+    return 1
+  else
+    return n*factorial(n-1)
+\end{file}
+\iframeend
+
+\aframe{
+  \tit{Algo útil}
+  Rodando novamente, obtemos
+  \cmd{python2 callfact.py \\
+1 \\
+2 \\
+120 \\
+0
+}
+}
+
+\end{document}
