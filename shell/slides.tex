@@ -56,6 +56,7 @@ Raniere Silva
   \item[/lib] \hfill
   \item[/media] \hfill
   \item[/mnt] \hfill
+  \item[/root] \hfill
   \item[/tmp] \hfill
 \end{description}
 \end{description}
@@ -83,7 +84,7 @@ Será que dá pra listar por tamanho?
   \item Google
   \item {\tt man}
 \end{itemize}
-\cmd{man}
+\cmd{man ls}
 Use \cmdinline{q} para sair do \cmdinline{man}.
 Procurando por size, encontramos a opção \cmdinline{-s}.
 \cmd{ls -S}
@@ -113,7 +114,7 @@ Salve na pasta que criamos anteriormente.
 \cmd{cd /usr/local/share}
 \cmd{cd}
 \cmd{echo "Hello"}
-\cmd{echo ~}
+\cmd{echo \textasciitilde}
 \cmd{echo \$HOME}
 }
 
@@ -122,9 +123,10 @@ Salve na pasta que criamos anteriormente.
 \cmd{cd /tmp}
 \cmd{echo "Abel" > testing}
 \cmd{cat testing}
-\cmd{python2 -c "s=raw\_input(); print s"}
-\cmd{python2 -c "s=raw\_input(); print s" < tst}
-\cmd{echo "Zé" | python2 -c "s=raw\_input(); print s"}
+\cmd{python2 -c "s=raw\_input(); print s.swapcase()"}
+\cmd{python2 -c "s=raw\_input(); print s.swapcase()" < testing}
+\cmd{python2 -c "s=raw\_input(); print s.swapcase()" < testing > swtest}
+\cmd{echo "Madruga" | python2 -c "s=raw\_input(); print s.swapcase()"}
 }
 
 \aframe{
