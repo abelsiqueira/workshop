@@ -6,7 +6,7 @@
 \usepackage[usenames,dvipsnames]{color}
 
 \usepackage[top=1cm,bottom=2cm,left=1cm,right=1cm, paperwidth=16cm,
-paperheight=16cm]{geometry}
+paperheight=24cm]{geometry}
 \title{Python2}
 \author{Laboratório de Pesquisa Operacional e Otimização \\
 Abel Siqueira \\
@@ -58,6 +58,8 @@ Raniere Silva
   frame=single,
   breaklines=true,
   breakatwhitespace=false,
+  showspaces=false,
+  showstringspaces=false,
   backgroundcolor=\color{filebg}
 }
 \lstnewenvironment{file}{\lstset{style=filestyle}}{}
@@ -93,6 +95,8 @@ Hello World}
   \cmdpy{10*20}
   \cmdpy{3**5}
   \cmdpy{2\textasciicircum 1 \#Não é potência}
+  \cmdpy{print "abel"*3}
+  \cmdpy{print "junt" + "ando"}
 }
 
 \iframe{
@@ -194,6 +198,103 @@ def factorial(n):
 120 \\
 0
 }
+}
+
+\aframe{
+  \tit{Piorando}
+  Mas agora eu quero calcular o fatorial dos 30 primeiros naturais.
+  
+  Vamos modificar o arquivo \inline{callfact.py} para imprimir
+  \begin{flushleft}
+    \ttfamily \color{yellow}
+    1! = 1 \\
+    2! = 2 \\
+    3! = 6
+  \end{flushleft}
+}
+
+\iframe{
+  \tit{Piorando}
+  Vamos tentar fazendo
+}
+\begin{file}
+from fact import factorial
+
+i = 1
+while i <= 30:
+  print i + "! = " + factorial(i)
+  i = i + 1
+\end{file}
+\iframeend
+
+\aframe{
+  \tit{Piorando}
+  Rodando obtemos
+  \cmd{python2 callfact.py \\
+Traceback (most recent call last): \\
+File "callfact.py", line 5, in <module> \\
+print i + "! = " + factorial(i) \\
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+}
+Isso acontece porque \inline{i} é um inteiro e \inline{"! = "} é uma string.
+Podemos resolver convertendo \inline{i} para uma string.
+}
+
+\aframe{
+  \tit{Convertendo int para str}
+Uma maneira de fazer isso é com \inline{str(i)}.
+  \cmdpy{print str(2) + "\textasciicircum2 = " + str(2**2) \\
+  2\textasciicircum2 = 4}
+
+  A outra é com o comanto \inline{format}
+  \cmdpy{print "\{\}\textasciicircum2 = \{\}".format(2, 2**2) \\
+  2\textasciicircum2 = 4}
+  
+  Note que a segunda maneira é mais parecida com um printf. Inclusive, você pode
+  usar comandos parecidos com aqueles do printf para obter uma formatação
+  específica.
+
+  A outra é com o comanto \inline{format}
+  \cmdpy{print "\{\}\textasciicircum2 = \{:.2f\}".format(2, 2**2) \\
+  2\textasciicircum2 = 4.00}
+}
+
+\iframe{
+  \tit{Resolvendo}
+  Utilizando uma das maneiras:
+}
+\begin{file}
+from fact import factorial
+
+i = 1
+while i <= 30:
+  print "{}! = {}".format(i, factorial(i))
+  i = i + 1
+\end{file}
+\iframeend
+
+\aframe{
+  \tit{Listas}
+  Python trabalha bastante com listas:
+  \cmdpy{alunos = ["abel", "raniere"] \\
+  > print alunos}
+  Podemos passear nas listas usando o \inline{for}
+  \cmdpy{for aluno in alunos: \\
+  . \qquad print aluno}
+  Podemos verificar por índice
+  \cmdpy{alunos[1]}
+  Podemos verificar se um aluno específico está lá
+  \cmdpy{"abel" in alunos}
+}
+
+\aframe{
+  \tit{Exercícios}
+  \begin{enumerate}
+    \item Escreva um arquivo com uma função que verifica se um número é primo.
+      Você precisará do operador \inline{\%} que calcula o resto da divisão de
+      um número por outro. Teste no interpretador \inline{5\%3}, \inline{4\%2} e
+      \inline{10\%4}.
+  \end{enumerate}
 }
 
 \end{document}
