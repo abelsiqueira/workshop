@@ -5,8 +5,8 @@
 \usepackage{listings}
 \usepackage[usenames,dvipsnames]{color}
 
-\usepackage[top=1cm,bottom=2cm,left=1cm,right=1cm, paperwidth=16cm,
-paperheight=24cm]{geometry}
+\usepackage[top=1cm,bottom=2cm,left=1cm,right=1cm, paperwidth=12cm,
+paperheight=18cm]{geometry}
 \title{Python2}
 \author{Laboratório de Pesquisa Operacional e Otimização \\
 Abel Siqueira \\
@@ -294,6 +294,17 @@ while i <= 30:
       Você precisará do operador \inline{\%} que calcula o resto da divisão de
       um número por outro. Teste no interpretador \inline{5\%3}, \inline{4\%2} e
       \inline{10\%4}.
+    \item Faça um programa que lê um número e calcula a sequência de Collatz
+      desse número, imprimindo todos os números da sequência.
+      $$
+        a_{n+1} = \left\{\begin{array}{ll}
+            a_n/2, & \mbox{se } a_n \mbox{ é par} \\
+            3a_n + 1, & \mbox{se } a_n \mbox{ é ímpar}.
+        \end{array}\right.
+      $$
+    \item (Difícil) Faça um programa que mostra todos os números primos até
+      100000. Use a lista para fazer um programa eficiente, i.e. basta verificar
+      a divisibilidade por primos.
   \end{enumerate}
 }
 
