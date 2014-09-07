@@ -1,0 +1,222 @@
+\documentclass[12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{slidesdef}
+
+\title{Git - Introdução}
+\author{Laboratório de Pesquisa Operacional e Otimização \\
+  Abel Siqueira \\
+  Raniere Silva
+}
+
+\date{ 27 de Setembro de 2014 }
+
+% Use com um terminal flututante
+
+\newcommand{\cmd}[1]{
+\begin{flushleft}
+{\color{yellow} \tt \$ #1 }\\
+\end{flushleft}
+}
+
+\newcommand{\cmdinline}[1]{
+{\color{yellow} \tt #1} }
+
+\newcommand{\cmmt}[1]{
+{\color{magenta} \tt \# #1} }
+
+\newcommand{\bashgt}{ \textgreater\ }
+\newcommand{\ddash}{-{}-}
+
+\begin{document}
+
+\myframe{
+  \maketitle
+}
+
+\myframe{
+  \ctr{Por quê?}
+
+\begin{center}
+  \includegraphics[height=0.8\textheight]{phd.png}
+\end{center}
+}
+
+\myframe{
+  \ctr{Como funciona?}
+  \begin{center}
+  \includegraphics[height=0.5\textheight]{version1.png}
+  \hspace{0.1cm}
+  \pause
+  \includegraphics[height=0.5\textheight]{version2.png}
+  \hspace{0.1cm}
+  \pause
+  \includegraphics[height=0.5\textheight]{version3.png}
+  \hspace{0.1cm}
+  \pause
+  \includegraphics[height=0.5\textheight]{version4.png}
+  \hspace{0.1cm}
+  \pause
+  \includegraphics[height=0.5\textheight]{version5.png}
+  \end{center}
+}
+
+\myframeblack{
+  \ctrwhite{Começando}
+  \begin{center}
+    \tt \color{white}
+    Uma vez na vida \onslide<2->{por computador}
+  \end{center}
+  \pause
+  \pause
+  \cmd{git config \ddash global user.name ``Seu nome''}
+  \cmd{git config \ddash global user.email seu@email.com}
+}
+
+\myframeblack{
+  \ctrwhite{Começando}
+
+  \cmd{mkdir aula-git}
+  \cmd{cd aula-git}
+  \cmd{git init}
+  \cmd{ls -la}
+  \pause
+  \cmd{ls .git \only<3>{\cmmt{Não mexer}}}
+}
+
+\myframeblack{
+  \ctrwhite{Criando e adicionando alguma coisa}
+
+  \cmd{echo Meu noem eh Abel \bashgt teste}
+  \pause
+  \cmd{cat teste}
+  \pause
+  \cmd{git status}
+  \pause
+  \cmd{git add teste}
+  \pause
+  \cmd{git status}
+}
+
+\myframeblack{
+  \ctrwhite{Primeiro commit}
+  \cmd{git commit -m `Primeiro commit'}
+  \pause
+  \cmd{git status}
+  \pause
+  \cmd{git log}
+}
+
+\myframeblack{
+  \ctrwhite{Modificando e adicionando mais arquivos}
+  \cmd{\cmmt{Corrija teste (noem para nome)}}
+  \cmd{cat teste}
+  \pause
+  \cmd{git status}
+  \cmd{git diff}
+  \pause
+  \cmd{echo batata \bashgt compras}
+  \cmd{git status}
+}
+
+\myframeblack{
+  \ctrwhite{Modificando e adicionando mais arquivos}
+  \cmd{git add teste}
+  \pause
+  \cmd{\cmmt{Mude eh para é em teste}}
+  \pause
+  \cmd{git status}
+  \pause
+  \cmd{git add compras}
+  \cmd{git status}
+  \pause
+  \cmd{git commit -am `Segundo commit'}
+  \cmd{\cmmt{-am é o mesmo que -a -m}}
+  \pause
+  \cmd{git log}
+}
+
+\myframe{
+  \begin{center}
+    \includegraphics[height=0.9\textheight]{status.png}
+  \end{center}
+}
+
+\myframeblack{
+  \ctr{\color{red} Já posso escrever minha tese?}
+  \pause
+  \ctr{\color{green} SIM}
+  \pause
+  \ctr{\color{yellow} Mas espere. Tem mais.}
+}
+
+\myframeblack{
+  \ctrwhite{Mensagens de commit}
+  \cmd{echo ``\# Minha tese'' \bashgt README.md}
+  \cmd{git add README.md}
+  \pause
+  \cmd{git commit \cmmt{Sem -m}}
+}
+
+\myframeblack{
+  \ctrwhite{Mensagens de commit}
+  \begin{center}
+  \begin{minipage}{0.9\textwidth}
+    {\tt \color{green} Título (imperativo, 50-80 caracteres) \\ \\
+      Texto da mensagem (70-100 caracteres por linha) \\
+      Pode-se escrever a vontade, principalmente para explicar o motivo do
+      commit.
+    }
+  \end{minipage}
+  \end{center}
+}
+
+\myframeblack{
+  \ctrwhite{Mensagens de commit}
+  \tt \color{green}
+  Faça o commit com o título ``Adiciona README.md'' e o texto ``README.md
+  adicionado porque o professor mandou''.
+  \cmd{git log}
+  \pause
+  \cmd{git log \ddash oneline}
+  \pause
+  \cmd{git log \ddash graph}
+  \cmd{git log \ddash graph \ddash oneline}
+  \cmd{git log \ddash graph \ddash oneline \ddash decorate}
+}
+
+\myframeblack{
+  \ctrwhite{Mensagens de commit}
+  \cmd{git log \ddash pretty=format:``\%ad (\%ar) \%n\%an
+    (\%ae)\%n\%s\%n\%n\%b'' \ddash graph \ddash date=iso
+  \onslide<2->{\cmmt{Vamos definir esse comando como meulog}}}
+  \pause
+  \pause
+  \cmd{git config \ddash global alias.meulog `log \ddash pretty=format:``\%ad (\%ar)
+    \%n\%an (\%ae)\%n\%s\%n\%n\%b'' \ddash graph \ddash date=iso'}
+  \pause
+  \cmd{git meulog}
+}
+
+\myframecolor{green!50!black}{
+  \ctrcolor{green}{\Large Faça}
+  \ctrcolor{white}{Commits frequentes}
+  \ctrcolor{white}{Comite assuntos relacionados}
+  \ctrcolor{white}{Escreva boas mensagens}
+}
+
+\myframecolor{red!50!black}{
+  \ctrcolor{red}{\Large Não Faça}
+  \ctrcolor{white}{Commits de trabalho pela metade}
+  \ctrcolor{white}{Não use o git como backup}
+  \ctrcolor{white}{Commits sem testar o trabalho}
+}
+
+\myframe{
+  \ctr{\Huge Fim}
+}
+
+\end{document}
