@@ -141,7 +141,7 @@
 
 \myframe{
   \begin{center}
-    \includegraphics[height=0.9\textheight]{status.png}
+    \includegraphics[width=0.95\textwidth]{status.png}
   \end{center}
 }
 
@@ -213,6 +213,78 @@
   \ctrcolor{white}{Commits de trabalho pela metade}
   \ctrcolor{white}{Não use o git como backup}
   \ctrcolor{white}{Commits sem testar o trabalho}
+}
+
+\myframe{
+  \ctr{\Huge Fim\onslide<2->{?}}
+}
+
+\usetikzlibrary{trees}
+
+\tikzset{
+  commit/.style = {draw, circle},
+  invisible/.style={opacity=0},
+  visible on/.style={alt=#1{}{invisible}},
+  alt/.code args={<#1>#2#3}{
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}
+  }
+}
+
+\newcommand{\gitcommit}[1]{ node[commit] (#1) {#1} }
+\newcommand{\gitref}[2]{ \draw (#1) -- +(0,0.7) node[above] (#2) {#2}; }
+\newcommand{\gitrefd}[2]{ \draw (#1) -- +(0,-0.7) node[below] (#2) {#2}; }
+
+\myframeblack{
+  \begin{center}
+  \begin{tikzpicture}[grow via three points={one child at (1.5,0) and two children
+      at (1.5,0) and (1.5,-1.5)}, <-, white]
+    \node[commit] (C1) {C1}
+    child[visible on=<2->]{
+      \gitcommit{C2}
+      child[visible on=<3->]{
+        \gitcommit{C3}
+        child[visible on=<4->]{
+          \gitcommit{C4}
+          child[visible on=<10->]{
+            \gitcommit{C7}
+            child[visible on=<11>]{
+              \gitcommit{C8}
+            }
+          }
+        }
+      }
+      child[visible on=<7->]{
+        \gitcommit{C5}
+        child[visible on=<8->]{
+          \gitcommit{C6}
+        }
+      }
+    }
+    ;
+    \onslide<1>{\gitref{C1}{master}\gitref{master}{HEAD}}
+    \onslide<2>{\gitref{C2}{master}\gitref{master}{HEAD}}
+    \onslide<3>{\gitref{C3}{master}\gitref{master}{HEAD}}
+    \onslide<4>{\gitref{C4}{master}\gitref{master}{HEAD}}
+    \onslide<5-8>{\gitref{C4}{master}}
+    \onslide<5>{\gitref{C2}{HEAD}}
+    \onslide<6>{\gitref{C2}{issue}\gitref{issue}{HEAD}}
+    \onslide<7>{\gitrefd{C5}{issue}\gitrefd{issue}{HEAD}}
+    \onslide<8>{\gitrefd{C6}{issue}\gitrefd{issue}{HEAD}}
+    \onslide<9-11>{\gitrefd{C6}{issue}}
+    \onslide<9>{\gitref{C4}{master}\gitref{master}{HEAD}}
+    \onslide<10>{\gitref{C7}{master}\gitref{master}{HEAD}}
+    \onslide<11>{\gitref{C8}{master}\gitref{master}{HEAD}}
+    \onslide<11>{ \draw (C6) -- (C8); }
+  \end{tikzpicture}
+  \end{center}
+
+  \only<1-4>{ \cmd{git commit} }
+  \only<5>{ \cmd{git checkout C2} }
+  \only<6>{ \cmd{git branch issue} }
+  \only<7-8>{ \cmd{git commit} }
+  \only<9>{ \cmd{git checkout master} }
+  \only<10>{ \cmd{git commit} }
+  \only<11>{ \cmd{git merge issue} }
 }
 
 \myframe{
