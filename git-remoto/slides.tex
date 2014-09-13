@@ -1,0 +1,87 @@
+\documentclass[12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{slidesdef}
+
+\title{Git - Trabalhando com repositórios}
+\author{Laboratório de Pesquisa Operacional e Otimização \\
+  Abel Siqueira \\
+  Raniere Silva
+}
+
+\date{ 27 de Setembro de 2014 }
+
+% Use com um terminal flututante
+
+\newcommand{\cmd}[1]{
+\begin{flushleft}
+{\color{yellow} \tt \$ #1 }\\
+\end{flushleft}
+}
+
+\newcommand{\cmdinline}[1]{
+{\color{yellow} \tt #1} }
+
+\newcommand{\cmmt}[1]{
+{\color{magenta} \tt \# #1} }
+
+\newcommand{\bashgt}{ \textgreater\ }
+\newcommand{\ddash}{-{}-}
+
+\begin{document}
+
+\myframe{
+  \maketitle
+}
+
+\tikzstyle{local}=[draw, rectangle]
+\tikzstyle{remoto}=[draw, circle]
+
+\myframe{
+  \begin{center}
+    \begin{tikzpicture}[thick, node distance=3cm, bend angle=20, shorten <=1pt,
+      shorten >=1pt, bend right]
+      \node[draw, rectangle] (voce)   {Você};
+      \onslide<2->{
+        \node[draw, circle] (remote) [above right of=voce] {Remoto};
+        \draw[->] (voce) to (remote);
+      }
+      \onslide<3->{
+        \draw[->] (remote) to (voce);
+      }
+      \onslide<4->{
+        \node[draw, rectangle] (note) [below right of=remote] {Notebook};
+        \draw[->] (note) to (remote);
+        \draw[->] (remote) to (note);
+      }
+      \onslide<5->{
+        \node[draw, circle] (fork) [above of=remote] {Fork};
+        \draw[->] (remote) to (fork);
+      }
+      \onslide<6->{
+        \draw[->] (fork) to (remote);
+        \draw[->] (fork) to (voce);
+        \draw[->, bend left] (fork) to (note);
+      }
+
+    \end{tikzpicture}
+  \end{center}
+}
+
+\myframe{
+  \ctr{Repositórios online}
+  \begin{itemize}
+    \item \only<1>{Github}\only<2>{{\color{red}\bf Github}}
+    \item Bitbucket
+    \item Gitorious
+  \end{itemize}
+}
+
+\myframe{
+  \ctr{\Huge Fim}
+}
+
+\end{document}
