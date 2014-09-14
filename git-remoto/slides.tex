@@ -14,8 +14,6 @@
 
 \date{ 27 de Setembro de 2014 }
 
-% Use com um terminal flututante
-
 \newcommand{\cmd}[1]{
 \begin{flushleft}
 {\color{yellow} \tt \$ #1 }\\
@@ -44,21 +42,21 @@
   \begin{center}
     \begin{tikzpicture}[thick, node distance=3cm, bend angle=20, shorten <=1pt,
       shorten >=1pt, bend right]
-      \node[draw, rectangle] (voce)   {Você};
+      \node[local] (voce)   {Você};
       \onslide<2->{
-        \node[draw, circle] (remote) [above right of=voce] {Remoto};
+        \node[remoto] (remote) [above right of=voce] {Remoto};
         \draw[->] (voce) to (remote);
       }
       \onslide<3->{
         \draw[->] (remote) to (voce);
       }
       \onslide<4->{
-        \node[draw, rectangle] (note) [below right of=remote] {Notebook};
+        \node[local] (note) [below right of=remote] {Notebook};
         \draw[->] (note) to (remote);
         \draw[->] (remote) to (note);
       }
       \onslide<5->{
-        \node[draw, circle] (fork) [above of=remote] {Fork};
+        \node[remoto] (fork) [above of=remote] {Fork};
         \draw[->] (remote) to (fork);
       }
       \onslide<6->{
@@ -74,9 +72,147 @@
 \myframe{
   \ctr{Repositórios online}
   \begin{itemize}
-    \item \only<1>{Github}\only<2>{{\color{red}\bf Github}}
+    \item \only<1>{Github}\only<2>{{\color{red}\bf Github (criem conta agora)}}
     \item Bitbucket
     \item Gitorious
+  \end{itemize}
+}
+
+\myframetop{
+  \ctr{Criando o repositório no github}
+  \begin{center}
+    \only<1>{ \includegraphics[width=0.8\textwidth]{repo-create.png} }
+    \only<2>{ \includegraphics[width=0.9\textwidth]{create-repository-name.png} }
+    \only<3>{ \includegraphics[width=0.9\textwidth]{create-repository-desc.png} }
+    \only<4>{ \includegraphics[width=0.9\textwidth]{create-repository-public-private.png} }
+    \only<5>{ \includegraphics[width=0.9\textwidth]{create-repository-button.png} }
+  \end{center}
+}
+
+\myframeblack{
+  \ctrwhite{No computador}
+
+  \cmd{git remote add origin https://usuario@github.com/usuario/repositorio.git}
+  \cmd{git push -u origin master}
+}
+
+\myframe{
+  \ctr{Trabalhando com algo pronto}
+  \ctr{Site: https://github.com/lpoo/git-remoto-exemplo}
+  \ctr{Faça um fork}
+}
+
+\myframeblack{
+  \cmd{git clone https://usuario@github.com/usuario/git-remoto-exemplo}
+  \cmd{cd git-remoto-exemplo}
+  \cmd{ls}
+  \cmd{git log}
+  \cmd{cat README.md}
+}
+
+\myframe{
+  \ctr{Exercício}
+  \begin{itemize}
+    \item Divide em duplas. Uma pessoa é A e a outra B.
+    \item Edite o arquivo {\tt README.md}.
+    \item Faça um commit.
+  \end{itemize}
+}
+
+\myframeblack{
+  \cmd{git remote add colega https://github.com/colega/git-remoto-exemplo}
+  \cmd{git fetch \ddash all}
+  \cmd{git branch -a}
+  \cmd{git log \ddash oneline \ddash decorate \ddash all \ddash graph}
+}
+
+\myframeblack{
+  \ctrwhite{A faz o push}
+  \cmd{git push \cmmt{Não precisa de -u origin master}}
+  \cmd{git log \ddash oneline \ddash decorate \ddash all \ddash graph}
+}
+
+\myframeblack{
+  \ctrwhite{B faz fetch, merge, e depois push}
+  \cmd{git fetch colegaA}
+  \cmd{git log \ddash oneline \ddash decorate \ddash all \ddash graph}
+  \cmd{git diff colegaA/master}
+  \cmd{git merge colegaA/master \cmmt{Vai dar conflito}}
+  \cmd{git status \cmmt{Abre o arquivo e resolve o conflito}}
+  \cmd{git commit -am ``mensagem''}
+  \cmd{git push}
+  \cmd{git log \ddash oneline \ddash decorate \ddash all \ddash graph}
+}
+
+\myframeblack{
+  \ctrwhite{A faz fetch, merge, e depois push}
+  \cmd{git fetch colegaB}
+  \cmd{git log \ddash oneline \ddash decorate \ddash all \ddash graph}
+  \cmd{git diff colegaB/master}
+  \cmd{git merge colegaB/master}
+  \cmd{git push}
+  \cmd{git log \ddash oneline \ddash decorate \ddash all \ddash graph}
+}
+
+\myframe{
+  \begin{center}
+    \ctr{Workflow}
+    \begin{tikzpicture}[thick, node distance=3cm, shorten <=1pt, shorten >=1pt]
+      \node[local] (localA) {A local};
+      \onslide<2->{
+        \node[remoto] (remoteA) [above of=localA] {A remoto};
+        \draw[->] (localA) to (remoteA);
+      }
+      \onslide<3->{
+        \node[local] (localB) [right of=localA] {B local};
+        \draw[->] (remoteA) to (localB);
+      }
+      \onslide<4->{
+        \node[remoto] (remoteB) [above of=localB] {B remoto};
+        \draw[->] (localB) to (remoteB);
+      }
+      \onslide<5->{
+        \draw[->] (remoteB) to (localA);
+      }
+
+    \end{tikzpicture}
+  \end{center}
+}
+
+\myframe{
+  \begin{center}
+    \ctr{Workflow}
+    \begin{tikzpicture}[thick, node distance=3cm, shorten <=1pt, shorten >=1pt]
+      \node[local] (localB) {B local};
+      \node[remoto] (remote) [above of=localB] {Remoto};
+      \node[local] (localA) [left of=localB] {A local};
+      \node[local] (localC) [right of=localB] {C local};
+      \draw[<->] (remote) to (localA);
+      \draw[<->] (remote) to (localB);
+      \draw[<->] (remote) to (localC);
+    \end{tikzpicture}
+  \end{center}
+}
+
+\myframecolor{green!50!black}{
+  \ctrcolor{green}{\Large Faça}
+  \ctrwhite{Suba os commits para o remoto}
+  \ctrwhite{Escolha um workflow}
+  \ctrwhite{Use branches para separar seu trabalho}
+}
+
+\myframecolor{red!50!black}{
+  \ctrcolor{red}{\Large Não Faça}
+  \ctrwhite{Não desfaça/refaça commits que forem subidos}
+  \ctrwhite{}
+  \ctrwhite{}
+}
+
+\myframe{
+  \ctr{Outras ferramenta}
+  \begin{itemize}
+    \item Github pages
+    \item Travis-CI
   \end{itemize}
 }
 
