@@ -72,6 +72,7 @@
   \pause
   \cmd{git config \ddash global user.name ``Seu nome''}
   \cmd{git config \ddash global user.email seu@email.com}
+  \cmd{git config \ddash global color.ui auto}
 }
 
 \myframeblack{
@@ -92,7 +93,7 @@
   \pause
   \cmd{cat teste}
   \pause
-  \cmd{git status}
+  \cmd{git status \cmmt{Talvez apareça um teste$\sim$}}
   \pause
   \cmd{git add teste}
   \pause
@@ -187,7 +188,7 @@
 }
 
 \myframeblack{
-  \ctrwhite{Mensagens de commit}
+  \ctrwhite{Log bonito}
   \cmd{git log \ddash pretty=format:``\%ad (\%ar) \%n\%an
     (\%ae)\%n\%s\%n\%n\%b'' \ddash graph \ddash date=iso
   \onslide<2->{\cmmt{Vamos definir esse comando como meulog}}}
@@ -197,6 +198,22 @@
     \%n\%an (\%ae)\%n\%s\%n\%n\%b'' \ddash graph \ddash date=iso'}
   \pause
   \cmd{git meulog}
+}
+
+\myframeblack{
+  \ctrwhite{Help}
+  \cmd{git help comando}
+}
+
+\myframecolor{gray!50!black}{
+  \ctrwhite{Sumário}
+  \cmd{git init}
+  \cmd{git add}
+  \cmd{git commit}
+  \cmd{git status}
+  \cmd{git log}
+  \cmd{git diff}
+  \cmd{git help}
 }
 
 \myframecolor{green!50!black}{
@@ -283,6 +300,13 @@
   \only<9>{ \cmd{git checkout master} }
   \only<10>{ \cmd{git commit} }
   \only<11>{ \cmd{git merge issue} }
+}
+
+\myframecolor{gray!50!black}{
+  \ctrwhite{Sumário 2}
+  \cmd{git branch}
+  \cmd{git checkout}
+  \cmd{git merge}
 }
 
 \myframe{
