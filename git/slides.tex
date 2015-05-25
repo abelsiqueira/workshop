@@ -7,12 +7,9 @@
 \usepackage{slidesdef}
 
 \title{Git - Introdução}
-\author{Laboratório de Pesquisa Operacional e Otimização \\
-  Abel Siqueira \\
-  Raniere Silva
-}
+\author{Abel Siqueira}
 
-\date{ 27 de Setembro de 2014 }
+\date{ 30 de Maio de 2015 }
 
 \newcommand{\cmd}[1]{
 \begin{flushleft}
@@ -93,7 +90,7 @@
   \pause
   \cmd{cat teste}
   \pause
-  \cmd{git status \cmmt{Talvez apareça um teste$\sim$}}
+  \cmd{git status}
   \pause
   \cmd{git add teste}
   \pause
@@ -145,7 +142,7 @@
 }
 
 \myframeblack{
-  \ctr{\color{red} Já posso escrever minha tese?}
+  \ctr{\color{red} Já posso escrever meu código?}
   \pause
   \ctr{\color{green} SIM}
   \pause
@@ -154,7 +151,7 @@
 
 \myframeblack{
   \ctrwhite{Mensagens de commit}
-  \cmd{echo ``\# Minha tese'' \bashgt README.md}
+  \cmd{echo ``\# Meu código'' \bashgt README.md}
   \cmd{git add README.md}
   \pause
   \cmd{git commit \cmmt{Sem -m}}
@@ -177,7 +174,7 @@
   \ctrwhite{Mensagens de commit}
   \tt \color{green}
   Faça o commit com o título ``Adiciona README.md'' e o texto ``README.md
-  adicionado porque o professor mandou''.
+  adicionado porque o Abel mandou''.
   \cmd{git log}
   \pause
   \cmd{git log \ddash oneline}
@@ -219,14 +216,14 @@
 \myframecolor{green!50!black}{
   \ctrcolor{green}{\Large Faça}
   \ctrcolor{white}{Commits frequentes}
-  \ctrcolor{white}{Comite assuntos relacionados}
-  \ctrcolor{white}{Escreva boas mensagens}
+  \ctrcolor{white}{Commits de assuntos relacionados}
+  \ctrcolor{white}{Boas mensagens}
 }
 
 \myframecolor{red!50!black}{
   \ctrcolor{red}{\Large Não Faça}
-  \ctrcolor{white}{Commits de trabalho pela metade}
-  \ctrcolor{white}{Não use o git como backup}
+  \ctrcolor{white}{Commits monolíticos}
+  \ctrcolor{white}{Inclusão de arquivos que são gerados (facilmente)}
   \ctrcolor{white}{Commits sem testar o trabalho}
 }
 
