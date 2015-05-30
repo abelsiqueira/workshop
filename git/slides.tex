@@ -86,9 +86,7 @@
 \myframeblack{
   \ctrwhite{Criando e adicionando alguma coisa}
 
-  \cmd{echo Meu noem eh Abel \bashgt teste}
-  \pause
-  \cmd{cat teste}
+  \cmd{\cmmt{Escreva `Meu noem eh Abel' no arquivo teste}}
   \pause
   \cmd{git status}
   \pause
@@ -109,12 +107,11 @@
 \myframeblack{
   \ctrwhite{Modificando e adicionando mais arquivos}
   \cmd{\cmmt{Corrija teste (noem para nome)}}
-  \cmd{cat teste}
   \pause
   \cmd{git status}
   \cmd{git diff}
   \pause
-  \cmd{echo batata \bashgt compras}
+  \cmd{\cmmt{Escreva `batata' no arquivo compras}}
   \cmd{git status}
 }
 
@@ -151,7 +148,7 @@
 
 \myframeblack{
   \ctrwhite{Mensagens de commit}
-  \cmd{echo ``\# Meu código'' \bashgt README.md}
+  \cmd{Escreva `\# Meu código' no arquivo README.md}
   \cmd{git add README.md}
   \pause
   \cmd{git commit \cmmt{Sem -m}}
