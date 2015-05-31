@@ -254,17 +254,17 @@
         \gitcommit{C3}
         child[visible on=<4->]{
           \gitcommit{C4}
-          child[visible on=<10->]{
+          child[visible on=<9->]{
             \gitcommit{C7}
-            child[visible on=<11>]{
+            child[visible on=<10>]{
               \gitcommit{C8}
             }
           }
         }
       }
-      child[visible on=<7->]{
+      child[visible on=<6->]{
         \gitcommit{C5}
-        child[visible on=<8->]{
+        child[visible on=<7->]{
           \gitcommit{C6}
         }
       }
@@ -275,30 +275,27 @@
     \onslide<3>{\gitref{C3}{master}\gitref{master}{HEAD}}
     \onslide<4>{\gitref{C4}{master}\gitref{master}{HEAD}}
     \onslide<5-8>{\gitref{C4}{master}}
-    \onslide<5>{\gitref{C2}{HEAD}}
-    \onslide<6>{\gitref{C2}{issue}\gitref{issue}{HEAD}}
-    \onslide<7>{\gitrefd{C5}{issue}\gitrefd{issue}{HEAD}}
-    \onslide<8>{\gitrefd{C6}{issue}\gitrefd{issue}{HEAD}}
-    \onslide<9-11>{\gitrefd{C6}{issue}}
-    \onslide<9>{\gitref{C4}{master}\gitref{master}{HEAD}}
-    \onslide<10>{\gitref{C7}{master}\gitref{master}{HEAD}}
-    \onslide<11>{\gitref{C8}{master}\gitref{master}{HEAD}}
-    \onslide<11>{ \draw (C6) -- (C8); }
+    \onslide<5>{\gitref{C2}{issue}\gitref{issue}{HEAD}}
+    \onslide<6>{\gitrefd{C5}{issue}\gitrefd{issue}{HEAD}}
+    \onslide<7>{\gitrefd{C6}{issue}\gitrefd{issue}{HEAD}}
+    \onslide<8-10>{\gitrefd{C6}{issue}}
+    \onslide<8>{\gitref{C4}{master}\gitref{master}{HEAD}}
+    \onslide<9>{\gitref{C7}{master}\gitref{master}{HEAD}}
+    \onslide<10>{\gitref{C8}{master}\gitref{master}{HEAD}}
+    \onslide<10>{ \draw (C6) -- (C8); }
   \end{tikzpicture}
   \end{center}
 
   \only<1-4>{ \cmd{git commit} }
-  \only<5>{ \cmd{git checkout C2} }
-  \only<6>{ \cmd{git branch issue} }
-  \only<7-8>{ \cmd{git commit} }
-  \only<9>{ \cmd{git checkout master} }
-  \only<10>{ \cmd{git commit} }
-  \only<11>{ \cmd{git merge issue} }
+  \only<5>{ \cmd{git checkout -b C2} }
+  \only<6-7>{ \cmd{git commit} }
+  \only<8>{ \cmd{git checkout master} }
+  \only<9>{ \cmd{git commit} }
+  \only<10>{ \cmd{git merge issue} }
 }
 
 \myframecolor{gray!50!black}{
   \ctrwhite{Sumário 2}
-  \cmd{git branch}
   \cmd{git checkout}
   \cmd{git merge}
 }
