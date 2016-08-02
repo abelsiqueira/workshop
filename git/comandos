@@ -1,11 +1,13 @@
   git config --global user.name "Seu nome"
   git config --global user.email seu@email.com
   git config --global color.ui auto
+
   mkdir aula-git
   cd aula-git
   git init
   ls -la
   ls .git # Não mexer
+
   # Escreva 'Meu noem eh Abel' no arquivo teste
   git status
   git add teste
@@ -13,29 +15,37 @@
   git commit -m 'Primeiro commit'
   git status
   git log
+
   # Corrija teste (noem para nome)
   git status
   git diff
+
   # Escreva 'batata' no arquivo compras
   git status
   git add teste
+
   # Mude eh para é em teste
   git status
   git add compras
   git status
+
   git commit -am 'Segundo commit'
   # -am é o mesmo que -a -m
+
   git log
   Escreva '# Meu código' no arquivo README.md
+
   git add README.md
   git commit # Sem -m
   git log
+
   git log --oneline
   git log --graph
   git log --graph --oneline
   git log --graph --oneline --decorate
   git log --pretty=format:"%ad (%ar) %n%an (%ae)%n%s%n%n%b" --graph --date=iso
   git config --global alias.meulog 'git log --pretty=format:"%ad (%ar) %n%an (%ae)%n%s%n%n%b" --graph --date=iso'
+
   git meulog
   git help comando
 
