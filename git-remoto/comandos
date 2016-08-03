@@ -1,0 +1,39 @@
+git config --global alias.logall 'log --oneline --decorate --all --graph'
+git checkout COMMIT
+git branch NOME
+Modificações
+git commit
+git logall
+git checkout master
+git merge NOME
+
+Em duplas
+A: Vai no github e cria um repositório
+A: git remote add origin https://usuario@github.com/usuario/repositorio.git
+A: git push -u origin master
+B: Fork
+B: git clone https://usuario@github.com/usuario/git-remoto-exemplo
+B: cd git-remoto-exemplo
+B: ls
+B: git log
+B: cat README.md
+B: Modifique
+B: Commit
+B: push
+A: Modifique
+A: Commit
+A: git remote add colega https://github.com/colega/git-remoto-exemplo
+A: git fetch --all
+A: git logall
+A: git merge
+A: Conflito
+A: Resolve
+A: push
+
+- checkout
+- branch
+- merge
+- remote add
+- push
+- clone
+- fetch
